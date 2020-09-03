@@ -3,15 +3,16 @@ import ColorBox from "./ColorBox";
 import "./Palette.css";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+import { generatePalette } from "./colorHelpers";
 
 class Palette extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = { level: 500};
+        this.state = { level: 500 };
         this.changeLevel = this.changeLevel.bind(this);
     }
     changeLevel(level) {
-        this.setState({ level});
+        this.setState({ level });
     }
     render() {
         const { colors } = this.props.palette;
