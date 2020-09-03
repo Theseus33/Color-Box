@@ -15,8 +15,8 @@ function generatePalette(starterPalette) {
     }
     for(let color of starterPalette.colors){
         let scale = getScale(color.color, 10).reverse();
-        for(let 1 in scale){
-            newPalette.colors[level[i]].push({
+        for(let i in scale){
+            newPalette.colors[levels[i]].push({
                 name: `{color,name} ${levels[i]}`,
                 id: color.name.toLowerCase().replace(/ /g, "-"),
                 hex: scale[i],
@@ -34,6 +34,6 @@ function getRange(hexColor){
 
 function getScale(hexColor, numberOfColors){
     chroma.scale(getRange(hexColor)).mode("lab").colors(numberOfColors)
-}
+};
 
-export generatePalette;
+export default generatePalette;
