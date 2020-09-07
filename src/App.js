@@ -7,7 +7,8 @@ import { generatePalette } from "./colorHelpers.js";
 function App() {
   return (
     <div className="App">
-      <Palette palette={generatePalette(seedColors[4])} />
+      console.log(generatePalette(seedColors[4]))
+      <Palette palette={generatePalette(seedColors[3])} />
     </div>
   );
 }

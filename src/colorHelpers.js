@@ -11,17 +11,17 @@
     for (let level of levels) {
         newPalette.colors[level] = [];
     }
-    for(let color of starterPalette.colors){
+    for (let color of starterPalette.colors){
         let scale = getScale(color.color, 10).reverse();
-        for(let i in scale) {
+        for (let i in scale) {
             newPalette.colors[levels[i]].push({
-                name: `{color.name} ${levels[i]}`,
+                name: `${color.name} ${levels[i]}`,
                 id: color.name.toLowerCase().replace(/ /g, "-"),
                 hex: scale[i],
                 rgb: chroma(scale[i]).css(),
                 rgba: chroma(scale[i])
                 .css()
-                .replace("rgba", "rgba")
+                .replace("rgb", "rgba")
                 .replace(")", ",1.0)")
             });
         }
@@ -39,9 +39,11 @@
       ];
   }
 
-  function getScale(hexColor, numberOfColors){
-    return[  
-    chroma.scale(getRange(hexColor)).mode("lab").colors(numberOfColors)]
+  function getScale(hexColor, numberOfColors) {
+    return chroma
+      .scale(getRange(hexColor))
+      .mode("lab")
+      .colors(numberOfColors);
   }
-
-  export default {generatePalette};
+  
+  export { generatePalette };
