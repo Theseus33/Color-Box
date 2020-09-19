@@ -12,15 +12,19 @@ import "./Navbar.css";
 class Navbar extends Component {
     constructor(props){
         super(props);
-        this.state = { format: "hex", open: "true" };
-        this.handleChange = this.handleChange.bind(this);
+        this.state = { format: "hex", open: false };
+        this.handleFormatChange = this.handleFormatChange.bind(this);
+        this.closeSnackbar = this.closeSnackbar.bind(this);
     }
-    handleChange(e){
-        this.setState({ format: e.target.value })
+    handleFormatChange(e){
+        this.setState({ format: e.target.value, open: true })
         this.props.handleChange(e.target.value);
     }
+    closeSnackbar() {
+        this.setState({ open: false});
+    }
     render() {
-        const {level, changeLevel, handleChange} = this.props;
+        const {level, changeLevel} = this.props;
         const { format } = this.state;
         return (
             <header className="Navbar">
@@ -34,11 +38,12 @@ class Navbar extends Component {
               min={100} 
               max={900} 
               step={100} 
-              onAfterChange={changeLevel}/>
+              onAfterChange={changeLevel}
+              />
             </div>
             </div>
             <div className="select-container">
-                <Select value={format} onChange={this.handleChange}>
+                <Select value={format} onChange={this.handleFormatChange}>
                     <MenuItem value="hex">HEX - #ffffff</MenuItem>
                     <MenuItem value="rgb">RGB - rgb(255, 255, 255)</MenuItem>
                     <MenuItem value="rgba">RGBA - rgba(255, 255, 255, 1.0)</MenuItem>
