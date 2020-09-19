@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Route, Switch} from "react-router-dom";
 import Palette from './Palette.js';
 import seedColors from './seedColors';
 import { generatePalette } from "./colorHelpers.js";
@@ -6,9 +7,13 @@ import { generatePalette } from "./colorHelpers.js";
 
 function App() {
   return (
-    <div className="App">
-      <Palette palette={generatePalette(seedColors[3])} />
-    </div>
+    <Switch>
+      <Route exact path="/" render={() => <h1>Palette List Goes Here</h1>} />
+      <Route exact path="/palette/:id"render={() => <h1>Individual Palette</h1>}/>
+    </Switch>
+    // <div className="App">
+    //   <Palette palette={generatePalette(seedColors[4])} />
+    // </div>
   );
 }
 
